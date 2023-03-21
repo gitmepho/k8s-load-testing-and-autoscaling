@@ -1,3 +1,12 @@
+## Pre-requisites
+
+Tools you need to have installed on your local machine before preceeding:
+
+- Kind v1.25.3 using `brew install kind`
+- kubectl 
+- docker
+- helm
+
 ## Deploy REST API in k8s cluster
 
 Deploy a simple REST API deployment:
