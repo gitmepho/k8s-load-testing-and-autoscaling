@@ -97,7 +97,7 @@ kubectl apply -f load-test.yaml
 
 ## Load/Stress Test using k6
 
-Grafana k6 is an open-source load testing tool that makes performance testing easy and productive for engineering teams. k6 is free, developer-centric, and extensible.
+[Grafana k6](https://k6.io/docs/get-started/running-k6/) is an open-source load testing tool that makes performance testing easy and productive for engineering teams. k6 is free, developer-centric, and extensible.
 
 Using k6, you can test the reliability and performance of your systems and catch performance regressions and problems earlier. k6 will help you to build resilient and performant applications that scale.
 
@@ -114,7 +114,7 @@ To run a load test, execute below cmd:
 k6 run --vus 10 script.js
 ```
 
-`script.js` has simple javascript program to run load test using stages approach to ramp up and down using VU (Virtual Users)
+`script.js` has a simple javascript program to run load test using stages approach to ramp up and down using VU (Virtual Users)
 
 Result output:
 
@@ -156,4 +156,14 @@ Result output:
 
 
 running (2m20.2s), 00/30 VUs, 2263 complete and 0 interrupted iterations
+```
+
+## Check for events on k8s autoscaling
+
+While the stress testing is in progress, we can inspect the status of HPA that we applied earlier `kubectl autoscale deployment microsvc --cpu-percent=30 --min=1 --max=4`. In this example, we set the autoscaling on `microsvc` deployment to have the cpu utilization limit to `30%`, min replica count `1`, and max replica count `4`. After a couple of minutes, the HPA begins to observe an increase in currecnt CPU utilization and auto scales up to manage the incoming load. It will create the maximum number of pods to maintain CPU below the `30%` threshold.
+
+```
+kubectl get hpa -w    #watch the horizontal pod autoscaling 
+
+kubectl describe hpa  #see events of auto scaling
 ```
