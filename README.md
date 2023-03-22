@@ -73,12 +73,14 @@ kubectl autoscale deployment microsvc --cpu-percent=30 --min=1 --max=4
 
 ## Challenges running k8s cluster locally using Kind
 
-By default Kind cluster doesn't install `metrics-server`, so to resolove below error on HPA, we need to install `metrics-server` using helm:
+By default Kind cluster doesn't install `metrics-server`, so to resolove below error on HPA, we need to install `metrics-server` using helm. What is a k8s metrics-server? [metrics-server](https://github.com/kubernetes-sigs/metrics-server/) is a scalable, efficient source of container resource metrics for Kubernetes built-in autoscaling pipelines.
 
+### Error
 ```
 Warning  FailedGetResourceMetric  19m (x8 over 37m)      horizontal-pod-autoscaler  failed to get cpu utilization: unable to get metrics for resource cpu: unable to fetch metrics from resource metrics API: the server is currently unable to handle the request (get pods.metrics.k8s.io)
 ```
 
+### Solution
 ```
 helm repo add metrics-server https://kubernetes-sigs.github.io/metrics-server/
 helm repo update
