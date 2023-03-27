@@ -169,3 +169,11 @@ kubectl get hpa -w    #watch the horizontal pod autoscaling
 
 kubectl describe hpa  #see events of auto scaling
 ```
+
+## Using Komodor for discovering events on k8s autoscaling
+
+[Komodor](https://komodor.com/free/) can be easily integrated with your cluster. Once singing up for free, and with just a Helm command, you can have Komodor installed. Using Komodor dashboard to drill down into your k8s resources, finding out errors, and health checks, resource events, and more!
+
+![dashboard](dashboard.png)
+
+![autoscaling](autoscaling.png)
