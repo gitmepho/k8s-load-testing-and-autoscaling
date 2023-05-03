@@ -174,6 +174,16 @@ kubectl describe hpa  #see events of auto scaling
 
 [Komodor](https://komodor.com/free/) can be easily integrated with your cluster. Once singing up for free, and with just a Helm command, you can have Komodor installed. Using Komodor dashboard to drill down into your k8s resources, finding out errors, and health checks, resource events, and more!
 
+## Installation
+
+Once you're registered with Komodor, you will be able to head to https://app.komodor.com/main/integration to grab the helm API Key. There are 2 ways to install Komodor:
+
+```
+HELM_API_KEY=yourAPIToken USER_EMAIL=yourWorkEmail.com bash <(curl -s -Ls https://raw.githubusercontent.com/komodorio/Install/master/install.sh)
+```
+```
+helm repo add komodorio https://helm-charts.komodor.io ; helm repo update; helm upgrade --install k8s-watcher komodorio/k8s-watcher --set watcher.actions.basic=true --set watcher.actions.advanced=true --set watcher.actions.podExec=true --set apiKey=yourAPIToken --set watcher.clusterName=default  --wait --timeout=90s && open https://app.komodor.com/main/services
+```
 ![dashboard](dashboard.png)
 
 ![autoscaling](autoscaling.png)
